@@ -8,8 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
     features = "src/test/resources/features",
-    glue = "com.epam.ta.uni",
-    plugin = {"pretty", "com.epam.reportportal.cucumber.StepReporter"}
+    glue = "com.epam.ta.uni"
 )
 public class TestRunnerIT {
 

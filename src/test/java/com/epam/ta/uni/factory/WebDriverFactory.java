@@ -1,10 +1,6 @@
 package com.epam.ta.uni.factory;
 
-import static com.epam.ta.uni.config.TestConfig.PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS;
-
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.time.Duration;
+import java.util.Objects;
+
+import static com.epam.ta.uni.config.TestConfig.PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS;
 
 @Component
 public class WebDriverFactory {
@@ -35,19 +34,19 @@ public class WebDriverFactory {
     public WebDriver getWebDriver() {
         if (Objects.isNull(webDriver)) {
             switch (browserName) {
-            case CHROME:
-                webDriver = setUpChromeDriver();
-                break;
-            case FIREFOX:
-                webDriver = setUpFirefoxDriver();
-                break;
-            default:
-                throw new RuntimeException("Unsupported driver for browser=" + browserName);
+                case CHROME:
+                    webDriver = setUpChromeDriver();
+                    break;
+                case FIREFOX:
+                    webDriver = setUpFirefoxDriver();
+                    break;
+                default:
+                    throw new RuntimeException("Unsupported driver for browser=" + browserName);
             }
         }
 
         webDriver.manage().window().setSize(new Dimension(1920, 1080));
-        webDriver.manage().timeouts().pageLoadTimeout(PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS));
 
         return webDriver;
     }

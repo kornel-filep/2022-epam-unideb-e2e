@@ -1,11 +1,13 @@
 package com.epam.ta.uni.stepdefinitions;
 
-import static com.epam.ta.uni.config.TestConfig.PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS;
-
-import java.util.concurrent.TimeUnit;
-
+import com.epam.ta.uni.config.TestConfig;
+import com.epam.ta.uni.pageobjects.HomePage;
+import com.epam.ta.uni.pageobjects.SignUpPage;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import io.cucumber.spring.CucumberContextConfiguration;
 import org.awaitility.Awaitility;
-import org.awaitility.Duration;
 import org.hamcrest.Matchers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,13 +15,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.epam.ta.uni.config.TestConfig;
-import com.epam.ta.uni.pageobjects.HomePage;
-import com.epam.ta.uni.pageobjects.SignUpPage;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
+import java.time.Duration;
 
+import static com.epam.ta.uni.config.TestConfig.PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS;
+
+@CucumberContextConfiguration
 @ContextConfiguration(classes = TestConfig.class)
 public class SpotifySignupStepDefs {
 
@@ -54,14 +54,14 @@ public class SpotifySignupStepDefs {
         signUpPage.clickOnRegistrationButton();
     }
 
-    @And("^the \'(.*)\' error message of the \'(?:.*)\' (?:field|dropdown|radio buttons|checkbox) should be shown$")
+    @And("^the '(.*)' error message of the '(?:.*)' (?:field|dropdown|radio buttons|checkbox) should be shown$")
     public void theErrorMessageShouldBeShown(final String message) {
         Awaitility.await(String.format("Element was not loaded in %s seconds", PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS))
-            .atMost(new Duration(PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS, TimeUnit.SECONDS))
-            .until(() -> signUpPage.getWebDriverFromFactory().findElements(
-                By.xpath(String.format("//div[text()='%s' or ./span[text()='%s']]", message, message))
-                ).size(),
-                Matchers.is(1));
+                .atMost(Duration.ofSeconds(PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS))
+                .until(() -> signUpPage.getWebDriverFromFactory().findElements(
+                                By.xpath(String.format("//div[text()='%s' or ./span[text()='%s']]", message, message))
+                        ).size(),
+                        Matchers.is(1));
     }
 
     @When("the {string} is filled in with {string}")
