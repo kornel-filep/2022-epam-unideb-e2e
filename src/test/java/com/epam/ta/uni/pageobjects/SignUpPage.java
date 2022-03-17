@@ -30,11 +30,11 @@ public class SignUpPage extends CommonPageObject {
     private WebElement dayInput;
 
     private final Map<String, WebElement> inputFieldsMap = Map.of(
-        "Add meg az e-mail címed.", emailInput,
-        "Írd be újra az e-mail-címed.", confirmEmailInput,
-        "Adj meg egy jelszót.", passwordInput,
-        "ÉÉÉÉ", yearInput,
-        "NN", dayInput
+        "Enter your email.", emailInput,
+        "Enter your email again.", confirmEmailInput,
+        "Create password.", passwordInput,
+        "YYYY", yearInput,
+        "DD", dayInput
     );
 
     public SignUpPage(final WebDriverFactory factory) {
