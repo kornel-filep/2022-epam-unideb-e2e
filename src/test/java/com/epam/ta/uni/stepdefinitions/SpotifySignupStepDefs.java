@@ -59,7 +59,7 @@ public class SpotifySignupStepDefs {
         Awaitility.await(String.format("Element was not loaded in %s seconds", PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS))
                 .atMost(Duration.ofSeconds(PAGE_OR_ELEMENT_LOAD_WAIT_SECONDS))
                 .until(() -> signUpPage.getWebDriverFromFactory().findElements(
-                                By.xpath(String.format("//div[text()='%s' or ./span[text()='%s']]", message, message))
+                                By.xpath(String.format("//div[text()=\"%s\" or ./span[text()=\"%s\"]]", message, message))
                         ).size(),
                         Matchers.is(1));
     }
