@@ -2,7 +2,7 @@ Feature: Spotify sign up page
 
   Background:
     Given the home page is opened
-      And the Cookie disclaimer is closed
+      # And the Cookie disclaimer is closed
       And the Regisztráció header button is clicked
 
   Scenario: Check required fields
