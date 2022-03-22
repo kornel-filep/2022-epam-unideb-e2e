@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com.epam.ta.uni",
         stepNotifications = true,
-        plugin = {"pretty", "html:target/cucumber-reports"}
+        plugin = {"pretty", "html:target/cucumber-reports.html"}
 )
 public class TestRunnerIT {
 
