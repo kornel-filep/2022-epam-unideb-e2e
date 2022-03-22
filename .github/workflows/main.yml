@@ -13,4 +13,4 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Run tests
-        run: mvn verify
+        run: mvn verify -Dheadless=true
