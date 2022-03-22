@@ -12,9 +12,5 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Set up Chrome
-      run: |
-        chmod +x ./scripts/InstallChrome.sh
-        ./scripts/InstallChrome.sh
       - name: Run tests
         run: mvn verify
