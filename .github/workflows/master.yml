@@ -1,6 +1,6 @@
 name: main testing pipeline
 
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
   main:
