@@ -5,6 +5,7 @@ Feature: Spotify sign up page
       # And the Cookie disclaimer is closed
       And the Regisztráció header button is clicked
 
+    @requiredfield
   Scenario: Check required fields
     Given it is scrolled down
     When the Regisztráció button is clicked
@@ -30,6 +31,7 @@ Feature: Spotify sign up page
       | Enter your email. | 123       | This email is invalid. Make sure it's written like example@email.com |
       | Create password.  | aaa       | Your password is too short.                                          |
 
+    @email
   Scenario: Fill email fields with valid but not equal values
     When the 'Enter your email.' is filled in with 'kornel_filep@gmail.com'
       And the 'Enter your email again.' is filled in with 'teszt_elek@gmail.com'
