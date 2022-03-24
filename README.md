@@ -12,6 +12,7 @@ Simple UI test automation in Java, using:
 - WebDriver manager
 - Spring
 
+
 **Launching the tests**
 Open a terminal and type:
 mvn clean verify
